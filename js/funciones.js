@@ -1,15 +1,4 @@
-function conectarDB() {
-  const abrirConexion = window.indexedDB.open('crm', 1);
-
-  abrirConexion.onerror = function () {
-    console.log('Hubo un error al abrir la conexion');
-  };
-  abrirConexion.onsuccess = function () {
-    DB = abrirConexion.result;
-  };
-}
-
-function imprimirAlerta(mensaje, tipo) {
+function imprimirAlerta(mensaje, container, tipo) {
   const alerta = document.querySelector('.alerta');
 
   if (!alerta) {
@@ -31,9 +20,11 @@ function imprimirAlerta(mensaje, tipo) {
       divAlerta.classList.add('bg-green-100', 'border-green-400', 'text-green-700');
     }
     divAlerta.textContent = mensaje;
-    formulario.appendChild(divAlerta);
+    container.appendChild(divAlerta);
     setTimeout(() => {
       divAlerta.remove();
     }, 3000);
   }
 }
+
+export { imprimirAlerta };
